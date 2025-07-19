@@ -8,25 +8,42 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/ext_power.h>
+// conversion of swiss keycodes
+#include "keymap_swiss_de.h"
+
+// custom layer names
+#define BASE 0
+#define SYM  1
+#define NAV  2
+#define NMBR 3
+#define FN   4
+
+// custom combinations
+#define SYM_SPC &lt SYM SPACE // tap: space; hold: sym-layer
+#define NAV_BSPC &lt NAV BSPC // tap: backspace; hold: nav-layer
+#define CTL_TAB &mt LCTRL TAB // tap: tab; hold: left-ctrl
+#define SFT_RET &mt LSHFT RET // tap: return; hold: left-shift
+#define WIN_L LG(L)
+
 
 / {
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
-// ------------------------------------------------------------------------------------------------------------
-// |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |   `   |
-// |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Z   |  U    |  I    |  O   |   P   |   -   |
-// |  SHFT |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |   '   |
-// |  GUI  |  Y  |  X  |  C   |  V   |  B   |   "["  |  |  "]"  |  N   |  M    |  ,    |  .   |   /   |       |
-//                     | ALT  | GUI  | LOWER|  SPACE |  | ENTER | RAISE| BSPC  | GUI   |
+// -------------------------------------------------------------------------------------------------------------
+// |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6    |  7    |  8    |  9   |   0   | WIN_L |
+// |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Z    |  U    |  I    |  O   |   P   |   ~   |
+// |  SHFT |  A  |  S  |  D   |  F   |  G   |                   |  H    |  J    |  K    |  L   |   :   |   /   |
+// |  GUI  |  Y  |  X  |  C   |  V   |  B   |   "{"  |  |  "}"  |  N    |  M    |  ,    |  .   |   -   |       |
+//                     | ALT  | GUI  |SPC/L1|  SPACE |  | ENTER |BSPC/L2| BSPC  | GUI   |
             display-name = "Base";
             bindings = <
-&kp ESC   &kp N1 &kp N2 &kp N3   &kp N4   &kp N5                     &kp N6 &kp N7   &kp N8    &kp N9  &kp N0   &kp GRAVE
-&kp CAPS  &kp Q  &kp W  &kp E    &kp R    &kp T                      &kp Z  &kp U    &kp I     &kp O   &kp P    &kp MINUS
-&kp LSHFT &kp A  &kp S  &kp D    &kp F    &kp G                      &kp H  &kp J    &kp K     &kp L   &kp SEMI &kp SQT
-&kp LGUI  &kp Y  &kp X  &kp C    &kp V    &kp B  &kp LBKT   &kp RBKT &kp N  &kp M    &kp COMMA &kp DOT &kp FSLH &trans
-                        &kp LALT &kp LGUI &lt 1 SPACE &kp TAB  &kp RET  &lt 2 BSPC &kp BSPC &kp RGUI
+&kp ESC   &kp N1    &kp N2 &kp N3   &kp N4   &kp N5                          &kp N6    &kp N7     &kp N8      &kp N9     &kp N0      WIN_L
+&kp CAPS  &kp Q     &kp W  &kp E    &kp R    &kp T                           &kp CH_Z  &kp U      &kp I       &kp O      &kp P       &kp CH_TILD
+&kp LSHFT &kp A     &kp S  &kp D    &kp F    &kp G                           &kp H     &kp J      &kp K       &kp L      &kp CH_COLN &kp CH_SLSH
+&kp LGUI  &kp CH_Y  &kp X  &kp C    &kp V    &kp B   &kp CH_LCBR &kp CH_RCBR &kp N     &kp M      &kp CH_COMM &kp CH_DOT &kp CH_MINS &trans
+                           &kp LALT &kp LGUI SYM_SPC CTL_TAB     SFT_RET     NAV_BSPC  &kp BSPC   &kp RGUI
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
