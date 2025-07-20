@@ -26,6 +26,7 @@
 #define WIN_L LG(L)
 #define NEXT_TB LC(TAB)
 #define PREV_TB LC(LS(TAB))
+#define ALT_Y &mt LALT CH_Y
 
 // home row mods
 // left home row
@@ -38,6 +39,15 @@
 #define HR_RCTRL &mt RCTRL J // tap J; hold: right-ctrl
 
 / {
+    behaviors {
+        ht: hold_tap {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                flavor = "hold-preferred";
+                tapping-term-ms = <200>;
+                bindings = <&kp>, <&kp>;
+        };
+    };
     keymap {
         compatible = "zmk,keymap";
 
@@ -45,16 +55,16 @@
 // -------------------------------------------------------------------------------------------------------------
 // |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6    |  7    |  8    |  9   |   0   | WIN_L |
 // |  CAPS |  Q  |  W  |  E   |  R   |  T   |                   |  Z    |  U    |  I    |  O   |   P   |   ~   |
-// |  SHFT |  A  |  S  |  D   |  F   |  G   |                   |  H    |  J    |  K    |  L   |   :   |   /   |
-// |  GUI  |  Y  |  X  |  C   |  V   |  B   |   "{"  |  |  "}"  |  N    |  M    |  ,    |  .   |   -   |       |
+// |  SHFT |  A  |  S  |  D   |  F   |  G   |                   |  H    |  J    |  K    |  L   |  :/;  |   /   |
+// |  GUI  |ALT/Y|  X  |  C   |  V   |  B   |   "{"  |  |  "}"  |  N    |  M    |  ,    |  .   |   -   |       |
 //                     | ALT  | GUI  |SPC/L1|  SPACE |  | ENTER |BSPC/L2| BSPC  | GUI   |
             display-name = "Base";
             bindings = <
-&kp ESC   &kp N1    &kp N2  &kp N3   &kp N4   &kp N5                          &kp N6    &kp N7   &kp N8      &kp N9     &kp N0      WIN_L
-&kp CAPS  &kp Q     &kp W   &kp E    &kp R    &kp T                           &kp CH_Z  &kp U    &kp I       &kp O      &kp P       &kp CH_TILD
-&kp LSHFT &kp A     HR_LALT HR_LSHFT HR_LCTRL &kp G                           &kp H     HR_RCTRL HR_RSHFT    HR_RALT    &kp CH_COLN &kp CH_SLSH
-&kp LGUI  &kp CH_Y  &kp X   &kp C    &kp V    &kp B   &kp CH_LCBR &kp CH_RCBR &kp N     &kp M    &kp CH_COMM &kp CH_DOT &kp CH_MINS &trans
-                            &kp LALT &mo NMBR SYM_SPC CTL_TAB     SFT_RET     NAV_BSPC  &kp BSPC &kp RGUI
+&kp ESC   &kp N1         &kp N2  &kp N3   &kp N4   &kp N5                          &kp N6    &kp N7        &kp N8      &kp N9        &kp N0              WIN_L
+&kp CAPS  &kp Q          &kp W   &kp E    &kp R    &kp T                           &kp CH_Z  &ht CH_UDIA U &kp I       &ht CH_ODIA O &kp P               &kp CH_TILD
+&kp LSHFT &ht CH_ADIA A  HR_LALT HR_LSHFT HR_LCTRL &kp G                           &kp H     HR_RCTRL      HR_RSHFT    HR_RALT       &ht CH_SCLN CH_COLN &kp CH_SLSH
+&kp LGUI  ALT_Y          &kp X   &kp C    &kp V    &kp B   &kp CH_LCBR &kp CH_RCBR &kp N     &kp M         &kp CH_COMM &kp CH_DOT    &kp CH_MINS         &trans
+                                 &kp LALT &mo 3    SYM_SPC CTL_TAB     SFT_RET     NAV_BSPC  &kp BSPC      &kp RGUI
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -129,8 +139,8 @@
 &trans &trans &kp F9 &kp F10 &kp F11 &kp F12                      &trans &trans &trans &trans &trans &trans
 &trans &trans &kp F5 &kp F6  &kp F7  &kp F8                       &trans &trans &trans &trans &trans &trans
 &trans &trans &kp F1 &kp F2  &kp F3  &kp F4                       &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans    &trans   &trans    &trans &trans &trans &trans &trans &trans
-                     &trans &trans &trans    &trans   &trans    &trans      &trans   &trans
+&trans &trans &trans &trans  &trans  &trans    &trans   &trans    &trans &trans &trans &trans &trans &trans
+                     &trans  &trans  &trans    &trans   &trans    &trans      &trans   &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
