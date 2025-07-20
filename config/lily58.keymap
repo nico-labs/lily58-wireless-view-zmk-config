@@ -57,14 +57,14 @@
 // |  CAPS |  Q  |  W  |  E   |  R   |  T   |                   |  Z    |  U    |  I    |  O   |   P   |   ~   |
 // |  SHFT |  A  |  S  |  D   |  F   |  G   |                   |  H    |  J    |  K    |  L   |  :/;  |   /   |
 // |  GUI  |ALT/Y|  X  |  C   |  V   |  B   |   "{"  |  |  "}"  |  N    |  M    |  ,    |  .   |   -   |       |
-//                     | ALT  | GUI  |SPC/L1|  SPACE |  | ENTER |BSPC/L2| BSPC  | GUI   |
+//                     |      |  L3  |SPC/L1| CTL/TAB|  |SFT/RET|BSPC/L2|  L4   |       |
             display-name = "Base";
             bindings = <
 &kp ESC   &kp N1         &kp N2  &kp N3   &kp N4   &kp N5                          &kp N6    &kp N7        &kp N8      &kp N9        &kp N0              WIN_L
 &kp CAPS  &kp Q          &kp W   &kp E    &kp R    &kp T                           &kp CH_Z  &ht CH_UDIA U &kp I       &ht CH_ODIA O &kp P               &kp CH_TILD
 &kp LSHFT &ht CH_ADIA A  HR_LALT HR_LSHFT HR_LCTRL &kp G                           &kp H     HR_RCTRL      HR_RSHFT    HR_RALT       &ht CH_SCLN CH_COLN &kp CH_SLSH
 &kp LGUI  ALT_Y          &kp X   &kp C    &kp V    &kp B   &kp CH_LCBR &kp CH_RCBR &kp N     &kp M         &kp CH_COMM &kp CH_DOT    &kp CH_MINS         &trans
-                                 &kp LALT &mo 3    SYM_SPC CTL_TAB     SFT_RET     NAV_BSPC  &kp BSPC      &kp RGUI
+                                 &trans   &mo NMBR SYM_SPC CTL_TAB     SFT_RET     NAV_BSPC  &mo FN        &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
