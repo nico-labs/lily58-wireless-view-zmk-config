@@ -45,7 +45,7 @@
 &kp CAPS  &kp Q     &kp W  &kp E    &kp R    &kp T                           &kp CH_Z  &kp U      &kp I       &kp O      &kp P       &kp CH_TILD
 &kp LSHFT &kp A     &kp S  &kp D    &kp F    &kp G                           &kp H     &kp J      &kp K       &kp L      &kp CH_COLN &kp CH_SLSH
 &kp LGUI  &kp CH_Y  &kp X  &kp C    &kp V    &kp B   &kp CH_LCBR &kp CH_RCBR &kp N     &kp M      &kp CH_COMM &kp CH_DOT &kp CH_MINS &trans
-                           &kp LALT &kp LGUI SYM_SPC CTL_TAB     SFT_RET     NAV_BSPC  &kp BSPC   &kp RGUI
+                           &kp LALT &mo NMBR SYM_SPC CTL_TAB     SFT_RET     NAV_BSPC  &kp BSPC   &kp RGUI
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -90,7 +90,22 @@
         };
 
         extra_1 {
-            status = "reserved";
+// ------------------------------------------------------------------------------------------------------------
+// |       |     |     |      |      |      |                   |  =   |   7   |   8   |  9   |   *   |       |
+// |       |     |     |      |      |      |                   |  -   |   4   |   5   |  6   |   +   |       |
+// |       |     |     |      |      |      |                   |  _   |   1   |   2   |  3   |   /   |       |
+// |       |     |     |      |      |      |        |  |       | BSPC |   0   |   .   |      |       |       |
+//                     |      |      |      |        |  |       |      |       |       |
+            display-name = "extra_1";
+            bindings = <
+&trans &trans &trans &trans &trans &trans                       &kp CH_EQL  &kp N7 &kp N8     &kp N9 &kp CH_ASTR &trans
+&trans &trans &trans &trans &trans &trans                       &kp CH_MINS &kp N4 &kp N5     &kp N6 &kp CH_PLUS &trans
+&trans &trans &trans &trans &trans &trans                       &kp CH_UNDS &kp N1 &kp N2     &kp N3 &kp CH_SLSH &trans
+&trans &trans &trans &trans &trans &trans    &trans   &trans    &kp BSPC    &kp N0 &kp CH_DOT &trans &trans      &trans
+                     &trans &trans &trans    &trans   &trans    &trans      &trans   &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         extra_2 {
