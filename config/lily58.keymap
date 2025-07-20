@@ -27,6 +27,15 @@
 #define NEXT_TB LC(TAB)
 #define PREV_TB LC(LS(TAB))
 
+// home row mods
+// left home row
+#define HR_LALT &mt LALT S // tap: S; hold: left-alt
+#define HR_LSHFT &mt LSHFT D // tap: D; hold: left-shift
+#define HR_LCTRL &mt LCTRL F // tap F; hold: left-ctrl
+// right home row
+#define HR_RALT &mt RALT L // tap: L; hold: right-alt
+#define HR_RSHFT &mt RSHFT K // tap: K; hold: right-shift
+#define HR_RCTRL &mt RCTRL J // tap J; hold: right-ctrl
 
 / {
     keymap {
@@ -41,11 +50,11 @@
 //                     | ALT  | GUI  |SPC/L1|  SPACE |  | ENTER |BSPC/L2| BSPC  | GUI   |
             display-name = "Base";
             bindings = <
-&kp ESC   &kp N1    &kp N2 &kp N3   &kp N4   &kp N5                          &kp N6    &kp N7     &kp N8      &kp N9     &kp N0      WIN_L
-&kp CAPS  &kp Q     &kp W  &kp E    &kp R    &kp T                           &kp CH_Z  &kp U      &kp I       &kp O      &kp P       &kp CH_TILD
-&kp LSHFT &kp A     &kp S  &kp D    &kp F    &kp G                           &kp H     &kp J      &kp K       &kp L      &kp CH_COLN &kp CH_SLSH
-&kp LGUI  &kp CH_Y  &kp X  &kp C    &kp V    &kp B   &kp CH_LCBR &kp CH_RCBR &kp N     &kp M      &kp CH_COMM &kp CH_DOT &kp CH_MINS &trans
-                           &kp LALT &mo NMBR SYM_SPC CTL_TAB     SFT_RET     NAV_BSPC  &kp BSPC   &kp RGUI
+&kp ESC   &kp N1    &kp N2  &kp N3   &kp N4   &kp N5                          &kp N6    &kp N7   &kp N8      &kp N9     &kp N0      WIN_L
+&kp CAPS  &kp Q     &kp W   &kp E    &kp R    &kp T                           &kp CH_Z  &kp U    &kp I       &kp O      &kp P       &kp CH_TILD
+&kp LSHFT &kp A     HR_LALT HR_LSHFT HR_LCTRL &kp G                           &kp H     HR_RCTRL HR_RSHFT    HR_RALT    &kp CH_COLN &kp CH_SLSH
+&kp LGUI  &kp CH_Y  &kp X   &kp C    &kp V    &kp B   &kp CH_LCBR &kp CH_RCBR &kp N     &kp M    &kp CH_COMM &kp CH_DOT &kp CH_MINS &trans
+                            &kp LALT &mo NMBR SYM_SPC CTL_TAB     SFT_RET     NAV_BSPC  &kp BSPC &kp RGUI
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
