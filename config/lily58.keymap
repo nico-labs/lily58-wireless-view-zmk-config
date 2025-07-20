@@ -23,9 +23,9 @@
 #define NAV_BSPC &lt NAV BSPC // tap: backspace; hold: nav-layer
 #define CTL_TAB &mt LCTRL TAB // tap: tab; hold: left-ctrl
 #define SFT_RET &mt LSHFT RET // tap: return; hold: left-shift
-#define WIN_L LG(L)
-#define NEXT_TB LC(TAB)
-#define PREV_TB LC(LS(TAB))
+#define WIN_L &kp LG(L)
+#define NEXT_TB &kp LC(TAB)
+#define PREV_TB &kp LC(LS(TAB))
 #define ALT_Y &mt LALT CH_Y
 
 // home row mods
