@@ -23,12 +23,12 @@
 // custom combinations
 #define SYM_SPC &lt SYM SPACE // tap: space; hold: sym-layer
 #define NAV_BSPC &lt NAV BSPC // tap: backspace; hold: nav-layer
-#define CTL_TAB &mt LCTRL TAB // tap: tab; hold: left-ctrl
-#define SFT_RET &mt LSHFT RET // tap: return; hold: left-shift
+#define CTL_TAB &ht LCTRL TAB // tap: tab; hold: left-ctrl
+#define SFT_RET &ht LSHFT RET // tap: return; hold: left-shift
 #define WIN_L &kp LG(L)
 #define NEXT_TB &kp LC(TAB)
 #define PREV_TB &kp LC(LS(TAB))
-#define ALT_Y &mt LALT CH_Y
+#define ALT_Y &ht LALT CH_Y
 
 // custom hold-taps for "umlaute" and others
 #define HT_A &ht CH_ADIA A
@@ -38,13 +38,13 @@
 
 // home row mods
 // left home row
-#define HR_LALT &mt LALT S // tap: S; hold: left-alt
-#define HR_LSHFT &mt LSHFT D // tap: D; hold: left-shift
-#define HR_LCTRL &mt LCTRL F // tap F; hold: left-ctrl
+#define HR_LALT &ht LALT S // tap: S; hold: left-alt
+#define HR_LSHFT &ht LSHFT D // tap: D; hold: left-shift
+#define HR_LCTRL &ht LCTRL F // tap F; hold: left-ctrl
 // right home row
-#define HR_RALT &mt RALT L // tap: L; hold: right-alt
-#define HR_RSHFT &mt RSHFT K // tap: K; hold: right-shift
-#define HR_RCTRL &mt RCTRL J // tap J; hold: right-ctrl
+#define HR_RALT &ht RALT L // tap: L; hold: right-alt
+#define HR_RSHFT &ht RSHFT K // tap: K; hold: right-shift
+#define HR_RCTRL &ht RCTRL J // tap J; hold: right-ctrl
 
 / {
     keymap {
