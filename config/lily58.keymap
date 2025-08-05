@@ -12,13 +12,16 @@
 #include "keymap_swiss_de.h"
 // custom hold-tap behavior definitions
 #include "hold_tap_behaviors.dtsi"
+// mouse emulation
+#include <dt-bindings/zmk/pointing.h>
 
 // custom layer names
-#define BASE 0
-#define SYM  1
-#define NAV  2
-#define NMBR 3
-#define FN   4
+#define BASE  0
+#define SYM   1
+#define NAV   2
+#define NMBR  3
+#define FN    4
+#define MOUSE 5
 
 // custom combinations
 #define SYM_SPC &lt SYM SPACE // tap: space; hold: sym-layer
@@ -56,14 +59,14 @@
 // |  CAPS |  Q  |  W  |  E   |  R   |  T   |                   |  Z    |  U    |  I    |  O   |   P   |   ~   |
 // |  SHFT |  A  |  S  |  D   |  F   |  G   |                   |  H    |  J    |  K    |  L   |  :/;  |   /   |
 // |  GUI  |ALT/Y|  X  |  C   |  V   |  B   |   "{"  |  |  "}"  |  N    |  M    |  ,    |  .   |   -   |       |
-//                     |      |  L3  |SPC/L1| CTL/TAB|  |SFT/RET|BSPC/L2|  L4   |       |
+//                     |  L5  |  L3  |SPC/L1| CTL/TAB|  |SFT/RET|BSPC/L2|  L4   |       |
             display-name = "Base";
             bindings = <
-&kp ESC   &kp N1 &kp N2  &kp N3   &kp N4   &kp N5                          &kp N6    &kp N7   &kp N8      &kp N9     &kp N0      WIN_L
-&kp CAPS  &kp Q  &kp W   &kp E    &kp R    &kp T                           &kp CH_Z  HT_U     &kp I       HT_O       &kp P       &kp CH_TILD
-&kp LSHFT HT_A   HR_LALT HR_LSHFT HR_LCTRL &kp G                           &kp H     HR_RCTRL HR_RSHFT    HR_RALT    HT_COLN     &kp CH_SLSH
-&kp LGUI  ALT_Y  &kp X   &kp C    &kp V    &kp B   &kp CH_LCBR &kp CH_RCBR &kp N     &kp M    &kp CH_COMM &kp CH_DOT &kp CH_MINS &trans
-                         &trans   &mo NMBR SYM_SPC CTL_TAB     SFT_RET     NAV_BSPC  &mo FN   &trans
+&kp ESC   &kp N1 &kp N2  &kp N3    &kp N4   &kp N5                          &kp N6    &kp N7   &kp N8      &kp N9     &kp N0      WIN_L
+&kp CAPS  &kp Q  &kp W   &kp E     &kp R    &kp T                           &kp CH_Z  HT_U     &kp I       HT_O       &kp P       &kp CH_TILD
+&kp LSHFT HT_A   HR_LALT HR_LSHFT  HR_LCTRL &kp G                           &kp H     HR_RCTRL HR_RSHFT    HR_RALT    HT_COLN     &kp CH_SLSH
+&kp LGUI  ALT_Y  &kp X   &kp C     &kp V    &kp B   &kp CH_LCBR &kp CH_RCBR &kp N     &kp M    &kp CH_COMM &kp CH_DOT &kp CH_MINS &trans
+                         &mo MOUSE &mo NMBR SYM_SPC CTL_TAB     SFT_RET     NAV_BSPC  &mo FN   &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -146,7 +149,22 @@
         };
 
         extra_3 {
-            status = "reserved";
+// ------------------------------------------------------------------------------------------------------------------------
+// |       |     |     |      |      |      |                    |         |         |         |          |       |       |
+// |       |     |     |      |      |      |                    | SCRL UP |SCRL LEFT| PNTR UP |SCRL RIGHT|       |       |
+// |       |     |     |      |      |      |                    |SCRL DOWN|PNTR LEFT|PNTR DOWN|PNTR RIGHT|       |       |
+// |       |     |     |      |      |      |        |  |        |         |         |         |          |       |       |
+//                     |      |      |      |        |  |LEFT CLK|RIGHT CLK| MDL CLK |         |
+            display-name = "Mouse";
+            bindings = <
+&trans &trans &trans &trans &trans &trans                    &trans         &trans          &trans         &trans          &trans &trans
+&trans &trans &trans &trans &trans &trans                    &msc SCRL_UP   &msc SCRL_LEFT  &mmv MOVE_UP   &msc SCRL_RIGHT &trans &trans
+&trans &trans &trans &trans &trans &trans                    &msc SCRL_DOWN &mmv MOVE_LEFT  &mmv MOVE_DOWN &mmv MOVE_RIGHT &trans &trans
+&trans &trans &trans &trans &trans &trans &trans   &trans    &trans         &trans          &trans         &trans          &trans &trans
+                     &trans &trans &trans &trans   &mkp LCLK &mkp RCLK      &mkp MCLK       &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
     };
 };
