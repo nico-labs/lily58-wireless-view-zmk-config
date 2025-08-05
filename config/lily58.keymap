@@ -76,7 +76,7 @@
 // |  ^  |  '  |  !  |  ?  |  @  |  #  |                   |  |  |  \  |  {  |  }  |     |     |
 // |     |     |  <  |  >  |  ´  |  `  |        |  |       |  ¨  |     |  [  |  ]  |     |     |
 //                   |     |     |     |        |  |       |     |     |     |
-            display-name = "Lower";
+            display-name = "Symbol";
             bindings = <
 &kp CH_UNDS &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4                    &bt BT_CLR  &trans      &trans      &trans      &trans     &trans
 &trans      &kp CH_PLUS  &kp CH_DQUO  &kp CH_ASTR  &kp CH_DLR   &kp CH_PERC                     &kp CH_AMPR &kp CH_SLSH &kp CH_LPRN &kp CH_RPRN &kp CH_EQL &trans
@@ -95,7 +95,7 @@
 // |       |     |     |      |      |      |                   | PGDN |  <-   |   v   |  ->  |  DEL  |       |
 // |       |     |     |      |      |      |        |  |       |      |PREV_TB|NEXT_TB|      |       |       |
 //                     |      |      |      |        |  |       |      |       |       |
-            display-name = "Raise";
+            display-name = "Nav";
             bindings = <
 &trans &trans &trans &trans &trans &trans                       &trans    &trans   &trans   &trans    &trans  &trans
 &trans &trans &trans &trans &trans &trans                       &kp PG_UP &kp HOME &kp UP   &kp END   &kp INS &trans
@@ -114,7 +114,7 @@
 // |       |     |     |      |      |      |                   |  _   |   1   |   2   |  3   |   /   |       |
 // |       |     |     |      |      |      |        |  |       | BSPC |   0   |   .   |      |       |       |
 //                     |      |      |      |        |  |       |      |       |       |
-            display-name = "extra_1";
+            display-name = "Numpad";
             bindings = <
 &trans &trans &trans &trans &trans &trans                       &kp CH_EQL  &kp N7 &kp N8     &kp N9 &kp CH_ASTR &trans
 &trans &trans &trans &trans &trans &trans                       &kp CH_MINS &kp N4 &kp N5     &kp N6 &kp CH_PLUS &trans
@@ -133,7 +133,7 @@
 // |       |     |     |      |      |      |                   |  _   |   1   |   2   |  3   |   /   |       |
 // |       |     |     |      |      |      |        |  |       | BSPC |   0   |   .   |      |       |       |
 //                     |      |      |      |        |  |       |      |       |       |
-            display-name = "extra_2";
+            display-name = "FN";
             bindings = <
 &trans &trans &kp F9 &kp F10 &kp F11 &kp F12                      &trans &trans &trans &trans &trans &trans
 &trans &trans &kp F5 &kp F6  &kp F7  &kp F8                       &trans &trans &trans &trans &trans &trans
