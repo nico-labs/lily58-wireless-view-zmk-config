@@ -1,0 +1,11 @@
+/ {
+    macros {
+        mac_clip: mac_clip {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <100>;
+            tap-ms = <40>;
+            bindings = <&kp LG(SPACE) &kp LG(4)>;
+        };
+    };
+};

@@ -12,6 +12,8 @@
 #include "keymap_swiss_de.h"
 // custom hold-tap behavior definitions
 #include "hold_tap_behaviors.dtsi"
+// custom macros
+#include "macros.dtsi"
 // mouse emulation
 #include <dt-bindings/zmk/pointing.h>
 
@@ -22,6 +24,8 @@
 #define NMBR  3
 #define FN    4
 #define MOUSE 5
+#define MAC   6
+#define MCSYM 7
 
 // custom combinations
 #define SYM_SPC &lt SYM SPACE // tap: space; hold: sym-layer
@@ -32,6 +36,21 @@
 #define NEXT_TB &kp LC(TAB)
 #define PREV_TB &kp LC(LS(TAB))
 #define ALT_Y &ht LALT CH_Y
+
+// custom combinations mac
+#define MAC_LOC &kp LC(LG(Q)) // tap: lock Mac
+#define MAC_LAY &to MAC  // tap: lock Mac
+#define BAS_LAY &to BASE // tap: lock Mac
+#define MAC_SYM &lt MCSYM SPACE // tap: space; hold: mac-sym-layer
+#define MAC_TLD &kp RA(N)
+#define MAC_AT  &kp RA(G)
+#define MAC_AIG &kp RA(CH_CIRC)
+#define MAC_BSL &kp LS(RA(7))
+#define MAC_LCB &kp RA(8)
+#define MAC_RCB &kp RA(9)
+#define MAC_LBR &kp RA(5)
+#define MAC_RBR &kp RA(6)
+#define HT_PRNT &ht LC(LG(LS(4))) CAPS
 
 // custom hold-taps for "umlaute" and others
 #define HT_A &ht CH_ADIA A
@@ -65,7 +84,7 @@
 &kp ESC   &kp N1 &kp N2  &kp N3    &kp N4   &kp N5                          &kp N6    &kp N7   &kp N8      &kp N9     &kp N0      WIN_L
 &kp CAPS  &kp Q  &kp W   &kp E     &kp R    &kp T                           &kp CH_Z  HT_U     &kp I       HT_O       &kp P       &kp CH_TILD
 &kp LSHFT HT_A   HR_LALT HR_LSHFT  HR_LCTRL &kp G                           &kp H     HR_RCTRL HR_RSHFT    HR_RALT    HT_COLN     &kp CH_SLSH
-&kp LGUI  ALT_Y  &kp X   &kp C     &kp V    &kp B   &kp CH_LCBR &kp CH_RCBR &kp N     &kp M    &kp CH_COMM &kp CH_DOT &kp CH_MINS &trans
+&kp LGUI  ALT_Y  &kp X   &kp C     &kp V    &kp B   &kp CH_LCBR &kp CH_RCBR &kp N     &kp M    &kp CH_COMM &kp CH_DOT &kp CH_MINS MAC_LAY
                          &mo MOUSE &mo NMBR SYM_SPC CTL_TAB     SFT_RET     NAV_BSPC  &mo FN   &trans
             >;
 
@@ -166,5 +185,44 @@
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
+
+        extra_4 {
+// -------------------------------------------------------------------------------------------------------------
+// |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6    |  7    |  8    |  9   |   0   | MAC_L |
+// |  CAPS |  Q  |  W  |  E   |  R   |  T   |                   |  Z    |  U    |  I    |  O   |   P   |   ~   |
+// |  SHFT |  A  |  S  |  D   |  F   |  G   |                   |  H    |  J    |  K    |  L   |  :/;  |   /   |
+// |  GUI  |ALT/Y|  X  |  C   |  V   |  B   |   "{"  |  |  "}"  |  N    |  M    |  ,    |  .   |   -   |       |
+//                     |  L5  |  L3  |SPC/L7| CTL/TAB|  |SFT/RET|BSPC/L2|  L4   |       |
+            display-name = "Mac";
+            bindings = <
+&kp ESC   &kp N1 &kp N2  &kp N3    &kp N4   &kp N5                          &kp N6    &kp N7   &kp N8      &kp N9     &kp N0      MAC_LOC
+HT_PRNT   &kp Q  &kp W   &kp E     &kp R    &kp T                           &kp CH_Z  HT_U     &kp I       HT_O       &kp P       MAC_TLD
+&kp LSHFT HT_A   HR_LALT HR_LSHFT  HR_LCTRL &kp G                           &kp H     HR_RCTRL HR_RSHFT    HR_RALT    HT_COLN     &kp CH_SLSH
+&kp LGUI  ALT_Y  &kp X   &kp C     &kp V    &kp B   &kp CH_LCBR &kp CH_RCBR &kp N     &kp M    &kp CH_COMM &kp CH_DOT &kp CH_MINS BAS_LAY
+                         &mo MOUSE &mo NMBR MAC_SYM CTL_TAB     SFT_RET     NAV_BSPC  &mo FN   &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
+        extra_5 {
+// ---------------------------------------------------------------------------------------------
+// |  _  |     |     |     |     |     |                   |     |     |     |     |     |     |
+// |     |  +  |  "  |  *  |  $  |  %  |                   |  &  |  /  |  (  |  )  |  =  |  ~  |
+// |  ^  |  '  |  !  |  ?  |  @  |  #  |                   |  |  |  \  |  {  |  }  |     |     |
+// |     |     |  <  |  >  |  ´  |  `  |        |  |       |  ¨  |     |  [  |  ]  |     |     |
+//                   |     |     |     |        |  |       |     |     |     |
+            display-name = "MacSym";
+            bindings = <
+&kp CH_UNDS &none        &none        &none        &mac_clip    &none                           &trans      &trans      &trans      &trans      &trans     &trans
+&trans      &kp CH_PLUS  &kp CH_DQUO  &kp CH_ASTR  &kp CH_DLR   &kp CH_PERC                     &kp CH_AMPR &kp CH_SLSH &kp CH_LPRN &kp CH_RPRN &kp CH_EQL MAC_TLD
+&kp CH_CIRC &kp CH_QUOT  &kp CH_EXLM  &kp CH_QUES  MAC_AT       &kp CH_HASH                     &kp CH_PIPE MAC_BSL     MAC_LCB     MAC_RCB     &kp RPAR   &trans
+&trans      &trans       &kp CH_LABK  &kp CH_RABK  MAC_AIG      &kp CH_GRV   &trans   &trans    &kp CH_DIAE &trans      MAC_LBR     MAC_RBR     &kp RBRC   &trans
+                                      &trans       &trans       &trans       &trans   &trans    &trans      &trans      &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
     };
 };
