@@ -19,12 +19,12 @@
 
 // custom layer names
 #define BASE  0
-#define SYM   1
-#define NAV   2
-#define NMBR  3
-#define FN    4
-#define MOUSE 5
-#define MAC   6
+#define MAC   1
+#define SYM   2
+#define NAV   3
+#define NMBR  4
+#define FN    5
+#define MOUSE 6
 #define MCSYM 7
 
 // custom combinations
@@ -45,12 +45,12 @@
 #define MAC_TLD &kp RA(N)
 #define MAC_AT  &kp RA(G)
 #define MAC_AIG &kp RA(CH_CIRC)
-#define MAC_BSL &kp LS(RA(7))
-#define MAC_LCB &kp RA(8)
-#define MAC_RCB &kp RA(9)
-#define MAC_LBR &kp RA(5)
-#define MAC_RBR &kp RA(6)
-#define HT_PRNT &ht LC(LG(LS(4))) CAPS
+#define MAC_BSL &kp LS(RA(N7))
+#define MAC_LCB &kp RA(N8)
+#define MAC_RCB &kp RA(N9)
+#define MAC_LBR &kp RA(N5)
+#define MAC_RBR &kp RA(N6)
+#define HT_PRNT &ht LC(LG(LS(N4))) CAPS
 
 // custom hold-taps for "umlaute" and others
 #define HT_A &ht CH_ADIA A
@@ -86,6 +86,25 @@
 &kp LSHFT HT_A   HR_LALT HR_LSHFT  HR_LCTRL &kp G                           &kp H     HR_RCTRL HR_RSHFT    HR_RALT    HT_COLN     &kp CH_SLSH
 &kp LGUI  ALT_Y  &kp X   &kp C     &kp V    &kp B   &kp CH_LCBR &kp CH_RCBR &kp N     &kp M    &kp CH_COMM &kp CH_DOT &kp CH_MINS MAC_LAY
                          &mo MOUSE &mo NMBR SYM_SPC CTL_TAB     SFT_RET     NAV_BSPC  &mo FN   &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
+        extra_4 {
+// -------------------------------------------------------------------------------------------------------------
+// |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6    |  7    |  8    |  9   |   0   | MAC_L |
+// |  CAPS |  Q  |  W  |  E   |  R   |  T   |                   |  Z    |  U    |  I    |  O   |   P   |   ~   |
+// |  SHFT |  A  |  S  |  D   |  F   |  G   |                   |  H    |  J    |  K    |  L   |  :/;  |   /   |
+// |  GUI  |ALT/Y|  X  |  C   |  V   |  B   |   "{"  |  |  "}"  |  N    |  M    |  ,    |  .   |   -   |       |
+//                     |  L5  |  L3  |SPC/L7| CTL/TAB|  |SFT/RET|BSPC/L2|  L4   |       |
+            display-name = "Mac";
+            bindings = <
+&kp ESC   &kp N1 &kp N2  &kp N3    &kp N4   &kp N5                          &kp N6    &kp N7   &kp N8      &kp N9     &kp N0      MAC_LOC
+HT_PRNT   &kp Q  &kp W   &kp E     &kp R    &kp T                           &kp CH_Z  HT_U     &kp I       HT_O       &kp P       MAC_TLD
+&kp LSHFT HT_A   HR_LALT HR_LSHFT  HR_LCTRL &kp G                           &kp H     HR_RCTRL HR_RSHFT    HR_RALT    HT_COLN     &kp CH_SLSH
+&kp LGUI  ALT_Y  &kp X   &kp C     &kp V    &kp B   HT_PRNT     &mac_clip   &kp N     &kp M    &kp CH_COMM &kp CH_DOT &kp CH_MINS BAS_LAY
+                         &mo MOUSE &mo NMBR MAC_SYM CTL_TAB     SFT_RET     NAV_BSPC  &mo FN   &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -181,25 +200,6 @@
 &trans &trans &trans &trans &trans &trans                    &msc SCRL_DOWN &mmv MOVE_LEFT  &mmv MOVE_DOWN &mmv MOVE_RIGHT &trans &trans
 &trans &trans &trans &trans &trans &trans &trans   &trans    &trans         &trans          &trans         &trans          &trans &trans
                      &trans &trans &trans &trans   &mkp LCLK &mkp RCLK      &mkp MCLK       &trans
-            >;
-
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
-        };
-
-        extra_4 {
-// -------------------------------------------------------------------------------------------------------------
-// |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6    |  7    |  8    |  9   |   0   | MAC_L |
-// |  CAPS |  Q  |  W  |  E   |  R   |  T   |                   |  Z    |  U    |  I    |  O   |   P   |   ~   |
-// |  SHFT |  A  |  S  |  D   |  F   |  G   |                   |  H    |  J    |  K    |  L   |  :/;  |   /   |
-// |  GUI  |ALT/Y|  X  |  C   |  V   |  B   |   "{"  |  |  "}"  |  N    |  M    |  ,    |  .   |   -   |       |
-//                     |  L5  |  L3  |SPC/L7| CTL/TAB|  |SFT/RET|BSPC/L2|  L4   |       |
-            display-name = "Mac";
-            bindings = <
-&kp ESC   &kp N1 &kp N2  &kp N3    &kp N4   &kp N5                          &kp N6    &kp N7   &kp N8      &kp N9     &kp N0      MAC_LOC
-HT_PRNT   &kp Q  &kp W   &kp E     &kp R    &kp T                           &kp CH_Z  HT_U     &kp I       HT_O       &kp P       MAC_TLD
-&kp LSHFT HT_A   HR_LALT HR_LSHFT  HR_LCTRL &kp G                           &kp H     HR_RCTRL HR_RSHFT    HR_RALT    HT_COLN     &kp CH_SLSH
-&kp LGUI  ALT_Y  &kp X   &kp C     &kp V    &kp B   &kp CH_LCBR &kp CH_RCBR &kp N     &kp M    &kp CH_COMM &kp CH_DOT &kp CH_MINS BAS_LAY
-                         &mo MOUSE &mo NMBR MAC_SYM CTL_TAB     SFT_RET     NAV_BSPC  &mo FN   &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;

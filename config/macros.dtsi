@@ -5,7 +5,7 @@
             #binding-cells = <0>;
             wait-ms = <100>;
             tap-ms = <40>;
-            bindings = <&kp LG(SPACE) &kp LG(4)>;
+            bindings = <&kp LG(SPACE) &kp LG(N4)>;
         };
     };
 };
